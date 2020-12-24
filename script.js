@@ -1,6 +1,6 @@
 const quoteContainer = document.getElementById('quote-container')
-const quote = document.getElementById('quote')
-const author = document.getElementById('author')
+const quoteText = document.getElementById('quote')
+const authorText = document.getElementById('author')
 const twitterBtn = document.getElementById('twitterbtn')
 const loadBtn = document.getElementById('loadBtn')
 const loader = document.getElementById('loader')
@@ -16,9 +16,9 @@ function hideQuoteLoader(){
 }
 
 function tweetThis(){
-    const quote = quote.innerText;
-    const author = author.innerTest;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${quote}-${author}`;
+    const quote = quoteText.innerText;
+    const author = authorText.innerText;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
     window.open(twitterUrl,'_blank');
 
 }
@@ -35,8 +35,8 @@ async function getQuote(){
         const response = await fetch(proxyUrl + quoteApiUrl);
         const data = await response.json()
 
-        quote.innerText = data.quoteText
-        data.quoteAuthor ? author.innerText = data.quoteAuthor : author.innerText = 'Unknown'
+        quoteText.innerText = data.quoteText
+        data.quoteAuthor ? authorText.innerText = data.quoteAuthor : authorText.innerText = 'Unknown'
         hideQuoteLoader()
         
         
